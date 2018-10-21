@@ -1,0 +1,44 @@
+@media all and (min-width: 480px) {
+    .imagen{
+        margin-top: 5%;
+        float: left;
+        margin-left: 10%;
+        margin-right: auto;
+        width: 30%;
+    }
+
+    .datosUsr{
+        width: 50%;
+        padding-right: 10%;
+        margin-top: 10%;
+        float: right;
+        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
+    }
+
+    .bloque{
+        display: inline-block;
+        width: 80%;
+        margin-top: 10px;
+        height: 70px;
+        margin: auto;
+    }
+}
+@media all and (max-width: 480px) {
+    .imagen{
+        margin-left: 15%;
+        margin-right: auto;
+        width: 100%;
+    }
+
+    .datosUsr{
+        margin: auto;
+        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
+    }
+
+    .bloque{
+        width: 80%;
+        margin-top: 10px;
+        height: 70px;
+        margin: auto;
+    }
+}

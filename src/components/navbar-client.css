@@ -1,0 +1,21 @@
+@media all and (min-width: 480px) {
+
+    .clientNav{   
+        margin: 0%;
+        padding: 0%;     
+        align-items: center;
+        text-align: center;
+    }
+
+    .styleNav{
+        position: absolute;
+        left: 50%;
+        transform: translatex(-50%);
+    }
+
+    .itesmNav{
+        margin-right: 20px;
+        margin-left: 20px;
+    }
+}
+  
