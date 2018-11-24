@@ -1,8 +1,9 @@
 import React, { Component } from "react";
-import { Redirect } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
 import axios from 'axios';
 import { Button, FormGroup, FormControl } from "react-bootstrap";
 import "./login-form.css";
+import { connect } from 'react-redux';
 
 class LoginForm extends Component {
   constructor() {
@@ -24,68 +25,97 @@ class LoginForm extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    
-    axios
-      .post('/user/login', {
-        email: this.state.email,
-        password: this.state.password,
-      })
+    const datos = {
+      user: this.state.email,
+      password: this.state.password,
+      header: {
+        'Access-Control-Allow-Origin': '*',
+        'Content-Type': 'application/json'
+      }
+    }
+
+    axios.post('https://el-equipo-perro.mybluemix.net/company/login', datos)
       .then(response => {
-        if (response.status === 200) {
-          this.props.updateUser({
-            loggedIn: true,
-            username: response.data.username,
-          });
+        console.log(response)
+        if (response.data.payload === true) {
+          this.props.setUser(this.state.email)
+          this.props.loggedIn()
           this.setState({
-            redirectTo: '/',
-          });
+            redirectTo: '/'
+          })
+        }
+        else {
+          this.setState({
+            email: '',
+            password: ''
+          })
         }
       })
       .catch(error => {
+        console.log("No se encontro el usuario")
         console.error(error);
       });
   }
 
-  
+
 
   render() {
-    return (
-    
-      <div className="login">
-        <form onSubmit={this.handleSubmit}>
-          <FormGroup controlId="email" className = "form-group" >
-            <FormControl
-              name="email"
-              type="email"
-              value={this.state.email}
-              onChange={this.handleChange}
-              placeholder = "Correo"
-              className="box"
-            />
-          </FormGroup>
-          <FormGroup controlId="password">
-            <FormControl
-              name="password"
-              className = "box"
-              value={this.state.password}
-              onChange={this.handleChange}
-              type="password"
-              placeholder="Contraseña"
-            />
-          </FormGroup>
+    if (this.state.redirectTo) {
+      return <Redirect to={{ pathname: this.state.redirectTo }} />;
+    } else {
+        return (
+        <div className="login">
+          <form onSubmit={this.handleSubmit}>
+            <FormGroup controlId="email" className = "form-group" >
+              <FormControl
+                name="email"
+                type="email"
+                value={this.state.email}
+                onChange={this.handleChange}
+                placeholder = "Correo"
+                className="box"
+              />
+            </FormGroup>
+            <FormGroup controlId="password">
+              <FormControl
+                name="password"
+                className = "box"
+                value={this.state.password}
+                onChange={this.handleChange}
+                type="password"
+                placeholder="Contraseña"
+              />
+            </FormGroup>
 
-          <Button
-            className = "boton"
-            bsStyle="primary"
-            bsSize="large"
-            type="submit"
-            onClick={this.handleSubmit}
-          >
-            Iniciar Sesión
-          </Button>
-        </form>
-      </div>
-    );
+            <Button
+              className = "boton"
+              bsStyle="primary"
+              bsSize="large"
+              type="submit"
+              onClick={this.handleSubmit}
+            >
+              Iniciar Sesión
+            </Button>
+          </form>
+        </div>
+      );
+    }
   }
 }
-export default LoginForm;
+
+const mapStateToProps = state => {
+  return {
+    usr: state.user,
+    pswd: state.password,
+    logged: state.logged
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    setUser: (usr) => dispatch({ type: 'SET_USR', usr: usr }),
+    loggedIn: () => dispatch({ type: 'SET_lOGGED' })
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(LoginForm);
