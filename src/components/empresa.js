@@ -37,8 +37,7 @@ const empresa = (props) => {
                 <img alt="" src={props.logo} height="60px" width="60px" />
               </div>
               <div className='datosEmpresa'>
-                <p>{props.nombre},
-                Inicio: {props.fi}
+                <p>{props.nombre}
                 </p>
                 <Button onClick={props.click} bsStyle="danger">Desactivado</Button>
               </div>
