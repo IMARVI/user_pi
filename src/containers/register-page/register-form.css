@@ -1,0 +1,38 @@
+@media all and (min-width: 480px) {
+
+    .login{
+        margin: 0px;
+        padding: 0px;
+        background-image: url(../../recursos/imagenes/adx-1.svg);
+        background-repeat:no-repeat;
+        background-size: 20%;
+        background-position-x: center;
+    }
+
+    form {
+      padding: 10% 25%;
+      align-items: center;
+    }
+  
+    .form-group {
+        margin: 5% 0% 5% 0%;
+        align-items: center;
+    }
+
+    .box{
+        border-radius: 10px;
+        text-align: center;
+        align-self: auto;
+        margin: auto;
+        max-width: 400px;;
+        opacity: 0.9;
+    }
+    .boton{
+        margin-top: 21%;
+        border-radius: 20px;
+        width: 400px;
+        text-align: center;
+        align-self: auto;
+    }
+  }
+  
