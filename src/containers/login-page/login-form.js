@@ -37,6 +37,7 @@ class LoginForm extends Component {
     axios.post('https://el-equipo-perro.mybluemix.net/company/login', datos)
       .then(response => {
         console.log(response)
+        alert(response.data.message)
         if (response.data.payload === true) {
           this.props.setUser(this.state.email)
           this.props.loggedIn()
@@ -96,6 +97,11 @@ class LoginForm extends Component {
             >
               Iniciar Sesión
             </Button>
+
+            <Link to="/register" >
+              Registrarse
+            </Link>
+
           </form>
         </div>
       );
