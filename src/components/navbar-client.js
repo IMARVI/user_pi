@@ -3,7 +3,7 @@ import axios from 'axios';
 import { Nav, Navbar, NavItem } from "react-bootstrap";
 import { Link } from 'react-router-dom';
 import "./navbar-client.css";
-
+import {connect} from 'react-redux';
 
 class NavbarClient extends Component {
   constructor() {
@@ -32,12 +32,13 @@ class NavbarClient extends Component {
   }
 
   render() {
-    const loggedIn = true;
+    const loggedIn = this.props.logged;
     console.log('navbar render, props: ');
     console.log(this.props);
 
     return (
       <div>
+        {loggedIn ? (
         <Navbar className='clientNav' >
           <Navbar.Header>
             <Navbar.Brand>
@@ -56,7 +57,7 @@ class NavbarClient extends Component {
               </NavItem>
               <NavItem eventKey={2} href="#" className='itesmNav' >
                 <Link to="/ajustes" >
-                  Ajustes
+                  Usuario
                 </Link>
               </NavItem>
               <NavItem eventKey={2} href="#" className='itesmNav' >
@@ -74,9 +75,24 @@ class NavbarClient extends Component {
             </Nav>
           </Navbar.Collapse>
         </Navbar>
+        ):(
+          <div></div>
+        )}
       </div>
     );
   }
 }
 
-export default NavbarClient;
+const mapStateToProps = state => {
+  return {
+    logged: state.logged
+  };
+};
+
+const mapDispatchToProps = dispatch =>{
+  return {
+    loggedOut : () => dispatch({type: 'LOGGED_OUT'})
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(NavbarClient);
