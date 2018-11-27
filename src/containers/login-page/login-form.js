@@ -37,10 +37,11 @@ class LoginForm extends Component {
     axios.post('https://el-equipo-perro.mybluemix.net/client/login', datos)
       .then(response => {
         console.log(response)
-        alert(response.data)
-        if (response.data.payload === true) {
+        if (response.data.payload === true){
           this.props.setUser(this.state.email)
           this.props.loggedIn()
+          console.log(this.props)
+
           this.setState({
             redirectTo: '/home'
           })

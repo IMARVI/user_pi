@@ -37,41 +37,36 @@ class UserNotifications extends Component {
           };
     }
 
+    componentDidMount() {
+      //Aqui mandamos a cargar el estado desde redux
+      this.cargarEmpresas()
+    }
+
     cargarEmpresas() {
-      axios.get('http://el-equipo-perro.mybluemix.net/client/' + 'FORH941027ER3' + '/companies')
+      const datos = {
+        header : {
+          'Access-Control-Allow-Origin': '*',
+          'Content-Type': 'application/json'
+        }
+      }
+      axios.get('http://el-equipo-perro.mybluemix.net/client/' + this.props.usr + '/companies', datos)
         .then(response => {
           console.log(response)
-          alert(response.data.payload.accepted)
-          alert(this.props.usr)
           if (response.status === 200) {
 
-            const ac = response.data.payload.accepted
-            const re = response.data.payload.rejected
-            const wa = response.data.payload.waiting
+            let ac = response.data.payload.approved
+            let re = response.data.payload.rejected
+            let wa = response.data.payload.waiting
 
-            var i;
-            var emp = [];
-            for(i = 0; i < ac.length; i++){
-              ac[i].estatus = true;
-              emp.push(ac[i]);
-            }
-            for(i = 0; i < re.length; i++){
-              re[i].estatus = false;
-              emp.push(re[i]);
-            }
+            let x = ac.concat(re, wa)
 
             this.setState({
               accepted: ac,
               rejected: re,
               waiting: wa,
+              usuariosRFC: x
               //empresas: emp
             })
-
-
-            this.setState({
-              usuariosRFC: ac.concat(re, wa)
-            })
-
 
             console.log(this.state)
 
@@ -79,16 +74,16 @@ class UserNotifications extends Component {
           }
         })
         .catch(error => {
-          console.log("Algo ocurrio en la llamada de buscar compañias")
+          console.log("Algo ocurrio en la pppppppp de buscar compañias")
           console.error(error);
         });
     }
 
     addEmpresaHandler = (num) => {
         axios.post('http://el-equipo-perro.mybluemix.net/client/aprove/company', {
-          client: "FORH941027ER3",
+          client: this.props.usr,
           company: this.state.waiting[num].company,
-          aprove: false
+          aprove: true
         })
         .then(response => {
           console.log("Funciona!")
@@ -109,7 +104,7 @@ class UserNotifications extends Component {
     eliminarEmpresaHandler = (num) => {
 
         axios.post('http://el-equipo-perro.mybluemix.net/client/aprove/company', {
-          client: "FORH941027ER3",
+          client: this.props.usr,
           company: this.state.waiting[num].company,
           aprove: false
         })
@@ -134,15 +129,21 @@ class UserNotifications extends Component {
             <div>
                 {
                     this.state.waiting.map((empresa, index) => {
-                    return <Notificacion
-                        key={index.toString()}
-                        logo={imagen}
-                        nombre={empresa.company}
-                        estatus={empresa.estatus}
-                        done = {empresa.done}
-                        click={this.addEmpresaHandler.bind(this, index)}
-                        eliminar={this.eliminarEmpresaHandler.bind(this, index)}
-                        />
+                    return (
+                      <div>
+                        <Notificacion
+                            key={index.toString()}
+                            logo={imagen}
+                            nombre={empresa.company}
+                            estatus={empresa.estatus}
+                            done = {empresa.done}
+                            click={this.addEmpresaHandler.bind(this, index)}
+                            eliminar={this.eliminarEmpresaHandler.bind(this, index)}
+                            />
+                          <hr />
+                      </div>
+
+                    )
                 })}
             </div>
         );

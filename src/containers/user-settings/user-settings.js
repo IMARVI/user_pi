@@ -16,7 +16,9 @@ class UserSettings extends Component {
                 nombre: "Isaias Martinez V",
                 permisos: "Administrador",
                 password: "***********",
-                login: "10-09-2018"
+                login: "10-09-2018",
+                edad: "22",
+                genero: "M"
             }
         };
     }
@@ -31,6 +33,8 @@ class UserSettings extends Component {
                     <p>Nombre: {this.state.datosUs.nombre}</p>
                     <p>Permisos: {this.state.datosUs.permisos}</p>
                     <p>Password: {this.state.datosUs.password}</p>
+                    <p>Edad: {this.state.datosUs.edad}</p>
+                    <p>Genero: {this.state.datosUs.genero}</p>
                     <p>Last-login: {this.state.datosUs.login}</p>
                 </div>
             </div>
