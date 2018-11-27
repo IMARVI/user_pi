@@ -49,7 +49,7 @@ class UserNotifications extends Component {
           'Content-Type': 'application/json'
         }
       }
-      axios.get('http://el-equipo-perro.mybluemix.net/client/' + this.props.usr + '/companies', datos)
+      axios.get('https://el-equipo-perro.mybluemix.net/client/' + this.props.usr + '/companies', datos)
         .then(response => {
           console.log(response)
           if (response.status === 200) {
@@ -80,7 +80,7 @@ class UserNotifications extends Component {
     }
 
     addEmpresaHandler = (num) => {
-        axios.post('http://el-equipo-perro.mybluemix.net/client/aprove/company', {
+        axios.post('https://el-equipo-perro.mybluemix.net/client/aprove/company', {
           client: this.props.usr,
           company: this.state.waiting[num].company,
           aprove: true
@@ -103,7 +103,7 @@ class UserNotifications extends Component {
 
     eliminarEmpresaHandler = (num) => {
 
-        axios.post('http://el-equipo-perro.mybluemix.net/client/aprove/company', {
+        axios.post('https://el-equipo-perro.mybluemix.net/client/aprove/company', {
           client: this.props.usr,
           company: this.state.waiting[num].company,
           aprove: false
