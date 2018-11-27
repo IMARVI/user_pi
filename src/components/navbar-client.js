@@ -43,7 +43,7 @@ class NavbarClient extends Component {
           <Navbar.Header>
             <Navbar.Brand>
               <Link to="/">
-                
+
               </Link>
             </Navbar.Brand>
             <Navbar.Toggle />
@@ -51,7 +51,7 @@ class NavbarClient extends Component {
           <Navbar.Collapse>
             <Nav className='styleNav'>
               <NavItem eventKey={1} href="#" className='itesmNav' >
-                <Link to="/" >
+                <Link to="/home" >
                   Home
                 </Link>
               </NavItem>

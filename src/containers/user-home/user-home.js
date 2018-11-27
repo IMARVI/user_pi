@@ -13,34 +13,13 @@ class UserHome extends Component {
             rejected: [],
             waiting: [],
             empresas:[
-                {
-                    logo: imagen,
-                    nombre: "Starbucks",
-                    fi : "10/09/2018",
-                    fv : "10/09/2019",
-                    estatus : true
-                },
-                {
-                    logo: imagen,
-                    nombre: "ITESM",
-                    fi : "10/09/2018",
-                    fv : "10/09/2019",
-                    estatus : true
-                },
-                {
-                    logo: imagen,
-                    nombre: "Netflix",
-                    fi : "10/09/2018",
-                    fv : "10/09/2019",
-                    estatus : false
-                },
             ]
 
         };
     }
 
     cargarEmpresas() {
-      axios.get('http://el-equipo-perro.mybluemix.net/client/' + this.props.usr + '/companies')
+      axios.get('https://el-equipo-perro.mybluemix.net/client/' + this.props.usr + '/companies')
         .then(response => {
           console.log(response)
           if (response.status === 200) {
@@ -96,7 +75,7 @@ class UserHome extends Component {
     switchEstadoHandler = (num) => {
         var isApproved = !this.state.empresas[num].estatus
 
-        axios.post('http://el-equipo-perro.mybluemix.net/client/aprove/company', {
+        axios.post('https://el-equipo-perro.mybluemix.net/client/aprove/company', {
           client: this.props.usr,
           company: this.state.empresas[num].company,
           aprove: isApproved

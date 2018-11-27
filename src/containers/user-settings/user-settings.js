@@ -39,12 +39,10 @@ class UserSettings extends Component {
               'Content-Type': 'application/json'
             }
           }
-          
-        axios.get('http://el-equipo-perro.mybluemix.net/client/' + this.props.usr)
+        axios.get('https://el-equipo-perro.mybluemix.net/client/' + this.props.usr)
             .then(response => {
                 console.log(response)
                 if (response.status === 200) {
- 
                     let nom = response.data.payload.nombres + ' ' + response.data.payload.apellidoMaterno + ' ' + response.data.payload.apellidoPaterno
                     let ed = response.data.payload.edad
                     let gen = response.data.payload.genero
@@ -67,10 +65,8 @@ class UserSettings extends Component {
                     console.log(this.state)
 
                 }
-            }
-            
+            }            
         )}
-        
     render() {
         return (
             <div className="bloque">
@@ -79,13 +75,10 @@ class UserSettings extends Component {
                 </div>
                 <div className="datosUsr">
                     <p>Nombre: {this.state.datosUs.nombre}</p>
-                    <p>Permisos: {this.state.datosUs.permisos}</p>
-                    <p>Password: {this.state.datosUs.password}</p>
                     <p>Edad: {this.state.datosUs.edad}</p>
                     <p>Genero: {this.state.datosUs.genero}</p>
                     <p>Curp: {this.state.datosUs.curp}</p>
                     <p>Rfc: {this.state.datosUs.rfc}</p>
-                    <p>Last-login: {this.state.datosUs.login}</p>
                 </div>
             </div>
         );
@@ -99,12 +92,11 @@ const mapStateToProps = state => {
       usuarios: state.usuariosTodos
     };
   };
-  
+
   const mapDispatchToProps = dispatch => {
     return {
       setUsuarios: (users) => dispatch({ type: 'SET_USUARIOS', usuariosTodos: users }),
     };
   };
-  
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserSettings);

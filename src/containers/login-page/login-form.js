@@ -68,6 +68,7 @@ class LoginForm extends Component {
     } else {
         return (
         <div className="login">
+          <br></br>
           <form onSubmit={this.handleSubmit}>
             <FormGroup controlId="email" className = "form-group" >
               <FormControl
@@ -89,7 +90,7 @@ class LoginForm extends Component {
                 placeholder="Contraseña"
               />
             </FormGroup>
-
+            <center>
             <Button
               className = "boton"
               bsStyle="primary"
@@ -99,6 +100,7 @@ class LoginForm extends Component {
             >
               Iniciar Sesión
             </Button>
+            </center>
 
             <Link to="/register" >
               Registrarse
