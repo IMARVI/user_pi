@@ -17,8 +17,8 @@ class UserSettings extends Component {
             datosUs: {
                 nombre: "",
                 permisos: "",
-                password: "",
-                login: "",
+                password: "***********",
+                login: "10-09-2018",
                 edad: "",
                 genero: "",
                 curp: ""
@@ -39,12 +39,10 @@ class UserSettings extends Component {
               'Content-Type': 'application/json'
             }
           }
-
         axios.get('https://el-equipo-perro.mybluemix.net/client/' + this.props.usr)
             .then(response => {
                 console.log(response)
                 if (response.status === 200) {
-
                     let nom = response.data.payload.nombres + ' ' + response.data.payload.apellidoMaterno + ' ' + response.data.payload.apellidoPaterno
                     let ed = response.data.payload.edad
                     let gen = response.data.payload.genero
@@ -54,22 +52,21 @@ class UserSettings extends Component {
                     this.setState({
                         datosUs: {
                             nombre: nom,
-                            permisos: "",
-                            login: "",
+                            permisos: "Administrador",
+                            password: "***********",
+                            login: "10-09-2018",
                             edad: ed,
                             genero: gen,
                             curp: cur,
-                            rfc: rf
+                            rfc: rf   
                         }
                     })
 
                     console.log(this.state)
 
                 }
-            }
-
+            }            
         )}
-
     render() {
         return (
             <div className="bloque">
@@ -78,6 +75,8 @@ class UserSettings extends Component {
                 </div>
                 <div className="datosUsr">
                     <p>Nombre: {this.state.datosUs.nombre}</p>
+                    <p>Edad: {this.state.datosUs.edad}</p>
+                    <p>Genero: {this.state.datosUs.genero}</p>
                     <p>Curp: {this.state.datosUs.curp}</p>
                     <p>Rfc: {this.state.datosUs.rfc}</p>
                 </div>
@@ -99,6 +98,5 @@ const mapStateToProps = state => {
       setUsuarios: (users) => dispatch({ type: 'SET_USUARIOS', usuariosTodos: users }),
     };
   };
-
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserSettings);
