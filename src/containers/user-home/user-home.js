@@ -13,27 +13,6 @@ class UserHome extends Component {
             rejected: [],
             waiting: [],
             empresas:[
-                {
-                    logo: imagen,
-                    nombre: "Starbucks",
-                    fi : "10/09/2018",
-                    fv : "10/09/2019",
-                    estatus : true
-                },
-                {
-                    logo: imagen,
-                    nombre: "ITESM",
-                    fi : "10/09/2018",
-                    fv : "10/09/2019",
-                    estatus : true
-                },
-                {
-                    logo: imagen,
-                    nombre: "Netflix",
-                    fi : "10/09/2018",
-                    fv : "10/09/2019",
-                    estatus : false
-                },
             ]
 
         };
