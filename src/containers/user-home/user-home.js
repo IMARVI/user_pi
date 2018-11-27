@@ -45,31 +45,34 @@ class UserHome extends Component {
           console.log(response)
           if (response.status === 200) {
 
-            const ac = response.data.payload.accepted
-            const re = response.data.payload.rejected
-            const wa = response.data.payload.waiting
+            let ac = response.data.payload.approved
+            let re = response.data.payload.rejected
+            let wa = response.data.payload.waiting
 
             var i;
             var emp = [];
-            for(i = 0; i < ac.length; i++){
-              ac[i].estatus = true;
-              emp.push(ac[i]);
+
+            if(ac != null){
+              for(i = 0; i < ac.length; i++){
+                ac[i].estatus = true;
+                emp.push(ac[i]);
+              }
             }
-            for(i = 0; i < re.length; i++){
-              re[i].estatus = false;
-              emp.push(re[i]);
+
+            if(re != null){
+              for(i = 0; i < re.length; i++){
+                re[i].estatus = false;
+                emp.push(re[i]);
+              }
             }
+
+
 
             this.setState({
               accepted: ac,
               rejected: re,
               waiting: wa,
               empresas: emp
-            })
-
-
-            this.setState({
-              usuariosRFC: ac.concat(re, wa)
             })
 
 
@@ -116,14 +119,19 @@ class UserHome extends Component {
         return (
             <div>
                 {this.state.empresas.map((empresa, index) => {
-                    return <Empresa
-                    key = {index.toString()}
-                    logo={imagen}
-                    nombre={empresa.company}
-                    fi={empresa.created}
-                    fv={empresa.fv}
-                    estatus={empresa.estatus}
-                    click = {this.switchEstadoHandler.bind(this,index)}/>
+                    return (
+                      <div>
+                        <Empresa
+                        key = {index.toString()}
+                        logo={imagen}
+                        nombre={empresa.company}
+                        fi={empresa.created}
+                        fv={empresa.fv}
+                        estatus={empresa.estatus}
+                        click = {this.switchEstadoHandler.bind(this,index)}/><hr />
+                      </div>
+
+                    )
                 })}
             </div>
         );

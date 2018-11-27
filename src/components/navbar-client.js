@@ -42,7 +42,7 @@ class NavbarClient extends Component {
           <Navbar.Header>
             <Navbar.Brand>
               <Link to="/">
-                Logo
+                
               </Link>
             </Navbar.Brand>
             <Navbar.Toggle />

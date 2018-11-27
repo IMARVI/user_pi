@@ -28,20 +28,22 @@ class App extends Component {
 
   render() {
 
-    return (
-      <div className="App">
-        <NavbarClient updateUser={this.updateUser} loggedIn={this.state.loggedIn} />
-        <Switch>
-          <Route path="/" exact render={() => <LoginForm updateUser={this.updateUser} />} />
-          <Route path="/home" component={UserHome} />
-          <Route path="/ajustes" component={UserSettings} />
-          <Route path="/notificaciones" component={UserNotifications} />
-          <Route path="/register" component={RegisterForm} />
-        </Switch>
+      return (
+        <div className="App">
+          <NavbarClient updateUser={this.updateUser} loggedIn={this.state.loggedIn} />
+          <Switch>
+            <Route path="/" exact render={() => <LoginForm updateUser={this.updateUser} />} />
+            <Route path="/home" component={UserHome} />
+            <Route path="/ajustes" component={UserSettings} />
+            <Route path="/notificaciones" component={UserNotifications} />
+            <Route path="/register" component={RegisterForm} />
+            <Route path="/login" component={LoginForm} />
+          </Switch>
 
-      </div>
-    );
-  }
+        </div>
+      );
+    }
+  
 }
 
 export default App;

@@ -10,14 +10,13 @@ const empresa = (props) => {
       <div className='bloque'>
         <Grid>
           <Row>
-
+            
               <div className='logo'>
                 <img alt="" src={props.logo} height="60px" width="60px" />
               </div>
 
               <div className='datosEmpresa'>
-                <p>{props.nombre},
-                Inicio: {props.fi}
+                <p>{props.nombre}
                 </p>
                 <Button onClick={props.click} bsStyle="success">Activado</Button>
               </div>
