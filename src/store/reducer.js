@@ -1,3 +1,5 @@
+//este es el estado gral
+
 const initialSate = {
   user : "",
   logged : false,

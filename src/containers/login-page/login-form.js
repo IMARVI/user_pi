@@ -34,15 +34,15 @@ class LoginForm extends Component {
       }
     }
 
-    axios.post('https://el-equipo-perro.mybluemix.net/company/login', datos)
+    axios.post('https://el-equipo-perro.mybluemix.net/client/login', datos)
       .then(response => {
         console.log(response)
-        alert(response.data.message)
+        alert(response.data)
         if (response.data.payload === true) {
           this.props.setUser(this.state.email)
           this.props.loggedIn()
           this.setState({
-            redirectTo: '/'
+            redirectTo: '/home'
           })
         }
         else {
@@ -61,6 +61,7 @@ class LoginForm extends Component {
 
 
   render() {
+    console.log(this.state)
     if (this.state.redirectTo) {
       return <Redirect to={{ pathname: this.state.redirectTo }} />;
     } else {
