@@ -40,7 +40,7 @@ class UserSettings extends Component {
             }
           }
 
-        axios.get('http://el-equipo-perro.mybluemix.net/client/' + this.props.usr)
+        axios.get('https://el-equipo-perro.mybluemix.net/client/' + this.props.usr)
             .then(response => {
                 console.log(response)
                 if (response.status === 200) {

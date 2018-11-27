@@ -19,7 +19,7 @@ class UserHome extends Component {
     }
 
     cargarEmpresas() {
-      axios.get('http://el-equipo-perro.mybluemix.net/client/' + this.props.usr + '/companies')
+      axios.get('https://el-equipo-perro.mybluemix.net/client/' + this.props.usr + '/companies')
         .then(response => {
           console.log(response)
           if (response.status === 200) {
@@ -75,7 +75,7 @@ class UserHome extends Component {
     switchEstadoHandler = (num) => {
         var isApproved = !this.state.empresas[num].estatus
 
-        axios.post('http://el-equipo-perro.mybluemix.net/client/aprove/company', {
+        axios.post('https://el-equipo-perro.mybluemix.net/client/aprove/company', {
           client: this.props.usr,
           company: this.state.empresas[num].company,
           aprove: isApproved
