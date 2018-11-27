@@ -153,8 +153,15 @@ class UserNotifications extends Component {
 const mapStateToProps = state => {
   return {
     usr: state.user,
-    logged: state.logged
+    logged: state.logged,
+    usuarios: state.usuariosTodos
   };
 };
 
-export default connect(mapStateToProps)(UserNotifications);
+const mapDispatchToProps = dispatch => {
+  return {
+    setUsuarios: (users) => dispatch({ type: 'SET_USUARIOS', usuariosTodos: users }),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(UserNotifications);

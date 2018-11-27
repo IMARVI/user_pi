@@ -33,10 +33,10 @@ class App extends Component {
         <NavbarClient updateUser={this.updateUser} loggedIn={this.state.loggedIn} />
         <Switch>
           <Route path="/" exact render={() => <LoginForm updateUser={this.updateUser} />} />
-          <Route exact path="/ajustes" component={UserSettings} />
-          <Route exact path="/notificaciones" component={UserNotifications} />
-          <Route exact path="/login" component={LoginForm} />
-          <Route exact path="/register" component={RegisterForm} />
+          <Route path="/home" component={UserHome} />
+          <Route path="/ajustes" component={UserSettings} />
+          <Route path="/notificaciones" component={UserNotifications} />
+          <Route path="/register" component={RegisterForm} />
         </Switch>
 
       </div>
