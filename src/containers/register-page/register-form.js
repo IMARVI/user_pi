@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Redirect } from 'react-router-dom';
 import axios from 'axios';
-import { Button, FormGroup, FormControl } from "react-bootstrap";
+import { Button, FormGroup, FormControl, ControlLabel, option } from "react-bootstrap";
 
 class ClientRegister extends Component {
   constructor() {
@@ -12,6 +12,8 @@ class ClientRegister extends Component {
       nombre: '',
       apellidoMaterno: '',
       apellidoPaterno: '',
+      edad: '',
+      genero: 'H',
       curp: '',
       redirectTo: null,
     };
@@ -21,6 +23,7 @@ class ClientRegister extends Component {
 
   //Metodo para hacer el double binding
   handleChange(event) {
+    console.log(event.target.name, event.target.value);
     this.setState({
       [event.target.name]: event.target.value,
     });
@@ -37,6 +40,8 @@ class ClientRegister extends Component {
         rfc: this.state.rfc,
         curp: this.state.curp,
         password: this.state.password,
+        edad: this.state.edad,
+        genero: this.state.genero,
       },
       header: {
         'Access-Control-Allow-Origin': '*',
@@ -96,7 +101,24 @@ class ClientRegister extends Component {
                 placeholder="Apellido materno"
                 className="box"
               />
-
+              <FormControl
+                name="edad"
+                className="box"
+                value={this.state.edad}
+                onChange={this.handleChange}
+                placeholder="Edad"
+              />
+              <FormControl
+                name="genero"
+                className="box"
+                value={this.state.genero}
+                onChange={this.handleChange}
+                placeholder="Genero"
+                componentClass="select"
+              >
+              <option value="H">Hombre</option>
+              <option value="M">Mujer</option>
+              </FormControl>
               <FormControl
                 name="rfc"
                 value={this.state.email}
@@ -122,7 +144,6 @@ class ClientRegister extends Component {
                 placeholder="Contraseña"
               />
             </FormGroup>
-
             <Button
               className="boton"
               bsStyle="primary"
